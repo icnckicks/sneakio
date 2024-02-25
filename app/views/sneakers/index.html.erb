@@ -37,6 +37,7 @@
 <th scope="col">Purchase Date</th>
 <th scope="col">Final Return Date</th>
 <th scope="col">Days in Inventory</th>
+<th scope="col">ROI</th>
 <th scope="col">Actions</th>
 </tr>
 </thead>
@@ -54,6 +55,7 @@
   <td><%= sneaker.purchase_date %></td>
   <td><%= sneaker.final_return_date %></td>
   <td><%= sneaker.days_in_inventory %></td>
+  <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
   <td>
   <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton<%= sneaker.id %>" data-bs-toggle="dropdown" aria-expanded="false">

@@ -27,4 +27,9 @@ class Sneaker < ApplicationRecord
         where(sold: true).sum(:sale_price)
     end
     
+    def roi
+        return 0 unless purchase_price.present? && sale_price.present? && sale_price > 0
+        ((sale_price - purchase_price) / purchase_price.to_f) * 100
+    end
+    
 end
