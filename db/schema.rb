@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_25_091732) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_25_112706) do
   create_table "sneakers", force: :cascade do |t|
     t.string "brand"
     t.string "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_091732) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "colorway"
+    t.string "source"
   end
 
 end

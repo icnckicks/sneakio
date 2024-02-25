@@ -72,6 +72,6 @@ class SneakersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sneaker_params
-      params.require(:sneaker).permit(:brand, :name, :size, :size_category, :quantity, :purchase_price, :purchase_date, :colorway)
+      params.require(:sneaker).permit(:brand, :name, :size, :size_category, :quantity, :purchase_price, :purchase_date, :colorway, :source)
     end    
 end
