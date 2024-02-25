@@ -25,6 +25,7 @@
         <td><%= sneaker.purchase_date %></td>
         <td>
           <%= link_to 'Show', sneaker, class: 'btn btn-sm btn-info' %>
+          <%= link_to 'Duplicate', duplicate_sneaker_path(sneaker), class: 'btn btn-sm btn-secondary' %>
         </td>
       </tr>
     <% end %>

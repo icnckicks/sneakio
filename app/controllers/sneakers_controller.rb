@@ -57,6 +57,13 @@ class SneakersController < ApplicationController
     end
   end
 
+  def duplicate
+    original = Sneaker.find(params[:id])
+    @sneaker = original.dup
+    render :new
+  end
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sneaker
