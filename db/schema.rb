@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_25_112706) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_25_114826) do
   create_table "sneakers", force: :cascade do |t|
     t.string "brand"
     t.string "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_112706) do
     t.datetime "updated_at", null: false
     t.string "colorway"
     t.string "source"
+    t.integer "return_period"
   end
 
 end

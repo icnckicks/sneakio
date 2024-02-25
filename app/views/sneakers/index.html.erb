@@ -12,6 +12,7 @@
       <th scope="col">Source</th>
       <th scope="col">Purchase Price</th>
       <th scope="col">Purchase Date</th>
+      <th scope="col">Final Return Date</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -27,6 +28,7 @@
         <td><%= sneaker.source %></td>
         <td><%= number_to_currency(sneaker.purchase_price) %></td>
         <td><%= sneaker.purchase_date %></td>
+        <td><%= sneaker.final_return_date %></td>
         <td>
           <%= link_to 'Show', sneaker, class: 'btn btn-sm btn-info' %>
           <%= link_to 'Edit', edit_sneaker_path(sneaker), class: 'btn btn-sm btn-warning' %>

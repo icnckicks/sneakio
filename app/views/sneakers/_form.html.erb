@@ -56,6 +56,12 @@
     <%= form.date_field :purchase_date, class: 'form-control' %>
     </div>
     
+    <div class="mb-3">
+    <%= form.label :return_period %>
+    <%= form.select :return_period, [14, 30, 60, 90], {}, { class: 'form-control' } %>
+    </div>
+    
+    
     <div>
     <%= form.submit class: 'btn btn-primary' %>
     </div>
