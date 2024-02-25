@@ -15,4 +15,11 @@ class Sneaker < ApplicationRecord
         (Date.today - purchase_date).to_i
     end
     
+    def self.total_items_in_stock
+        sum(:quantity)
+    end
+    
+    def self.total_inventory_value
+        all.sum { |sneaker| sneaker.purchase_price * sneaker.quantity }
+    end
 end

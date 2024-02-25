@@ -1,5 +1,21 @@
 <h1>Sneakers</h1>
 
+<div class="d-flex justify-content-around">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Total Items in Stock</h5>
+      <p class="card-text"><%= Sneaker.total_items_in_stock %></p>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Total Inventory Value</h5>
+      <p class="card-text"><%= number_to_currency(Sneaker.total_inventory_value) %></p>
+    </div>
+  </div>
+</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
