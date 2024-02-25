@@ -1,65 +1,74 @@
 <h1>Sneakers</h1>
 
 <div class="d-flex justify-content-around">
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Total Items in Stock</h5>
-      <p class="card-text"><%= Sneaker.total_items_in_stock %></p>
-    </div>
-  </div>
+<div class="card" style="width: 18rem;">
+<div class="card-body">
+<h5 class="card-title">Total Items in Stock</h5>
+<p class="card-text"><%= Sneaker.total_items_in_stock %></p>
+</div>
+</div>
 
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Total Inventory Value</h5>
-      <p class="card-text"><%= number_to_currency(Sneaker.total_inventory_value) %></p>
-    </div>
-  </div>
+<div class="card" style="width: 18rem;">
+<div class="card-body">
+<h5 class="card-title">Total Inventory Value</h5>
+<p class="card-text"><%= number_to_currency(Sneaker.total_inventory_value) %></p>
+</div>
+</div>
 
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Total Sales</h5>
-      <p class="card-text"><%= number_to_currency(Sneaker.total_sales) %></p>
-    </div>
-  </div>
+<div class="card" style="width: 18rem;">
+<div class="card-body">
+<h5 class="card-title">Total Sales</h5>
+<p class="card-text"><%= number_to_currency(Sneaker.total_sales) %></p>
+</div>
+</div>
 </div>
 
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Brand</th>
-      <th scope="col">Name</th>
-      <th scope="col">Colorway</th>
-      <th scope="col">Size</th>
-      <th scope="col">Size Category</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Source</th>
-      <th scope="col">Purchase Price</th>
-      <th scope="col">Purchase Date</th>
-      <th scope="col">Final Return Date</th>
-      <th scope="col">Days in Inventory</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sneakers.each do |sneaker| %>
-      <tr>
-        <td><%= sneaker.brand %></td>
-        <td><%= sneaker.name %></td>
-        <td><small><%= sneaker.colorway %></small></td>
-        <td><%= sneaker.size %></td>
-        <td><%= sneaker.size_category %></td>
-        <td><%= sneaker.quantity %></td>
-        <td><%= sneaker.source %></td>
-        <td><%= number_to_currency(sneaker.purchase_price) %></td>
-        <td><%= sneaker.purchase_date %></td>
-        <td><%= sneaker.final_return_date %></td>
-        <td><%= sneaker.days_in_inventory %></td>
-        <td>
-          <%= link_to 'Show', sneaker, class: 'btn btn-sm btn-info' %>
-          <%= link_to 'Edit', edit_sneaker_path(sneaker), class: 'btn btn-sm btn-warning' %>
-          <%= link_to 'Dup', duplicate_sneaker_path(sneaker), class: 'btn btn-sm btn-secondary' %>
-        </td>
-      </tr>
-    <% end %>
+<thead>
+<tr>
+<th scope="col">Brand</th>
+<th scope="col">Name</th>
+<th scope="col">Colorway</th>
+<th scope="col">Size</th>
+<th scope="col">Size Category</th>
+<th scope="col">Quantity</th>
+<th scope="col">Source</th>
+<th scope="col">Purchase Price</th>
+<th scope="col">Purchase Date</th>
+<th scope="col">Final Return Date</th>
+<th scope="col">Days in Inventory</th>
+<th scope="col">Actions</th>
+</tr>
+</thead>
+<tbody>
+<% @sneakers.each do |sneaker| %>
+  <tr>
+  <td><%= sneaker.brand %></td>
+  <td><%= sneaker.name %></td>
+  <td><small><%= sneaker.colorway %></small></td>
+  <td><%= sneaker.size %></td>
+  <td><%= sneaker.size_category %></td>
+  <td><%= sneaker.quantity %></td>
+  <td><%= sneaker.source %></td>
+  <td><%= number_to_currency(sneaker.purchase_price) %></td>
+  <td><%= sneaker.purchase_date %></td>
+  <td><%= sneaker.final_return_date %></td>
+  <td><%= sneaker.days_in_inventory %></td>
+  <td>
+  <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton<%= sneaker.id %>" data-bs-toggle="dropdown" aria-expanded="false">
+  Actions
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<%= sneaker.id %>">
+  <li><%= link_to 'Show', sneaker, class: 'dropdown-item' %></li>
+  <li><%= link_to 'Edit', edit_sneaker_path(sneaker), class: 'dropdown-item' %></li>
+  <li><%= link_to 'Duplicate', duplicate_sneaker_path(sneaker), class: 'dropdown-item' %></li>
+  <li><%= link_to 'Delete', sneaker, method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
+  </ul>
+  </div>
+  </td>
+  </tr>
+  <% end %>
   </tbody>
-</table>
+  </table>
+  
