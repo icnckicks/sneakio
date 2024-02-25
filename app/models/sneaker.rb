@@ -16,10 +16,15 @@ class Sneaker < ApplicationRecord
     end
     
     def self.total_items_in_stock
-        sum(:quantity)
+        where(sold: false).sum(:quantity)
     end
     
     def self.total_inventory_value
-        all.sum { |sneaker| sneaker.purchase_price * sneaker.quantity }
+        where(sold: false).sum { |sneaker| sneaker.purchase_price * sneaker.quantity }
     end
+    
+    def self.total_sales
+        where(sold: true).sum(:sale_price)
+    end
+    
 end

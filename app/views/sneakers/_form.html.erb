@@ -45,7 +45,6 @@
     <%= form.text_field :source, class: 'form-control' %>
     </div>
     
-    
     <div class="mb-3">
     <%= form.label :purchase_price %>
     <%= form.text_field :purchase_price, class: 'form-control' %>
@@ -61,6 +60,15 @@
     <%= form.select :return_period, [14, 30, 60, 90], {}, { class: 'form-control' } %>
     </div>
     
+    <div class="mb-3">
+    <%= form.label :sale_price %>
+    <%= form.text_field :sale_price, class: 'form-control' %>
+    </div>
+    
+    <div class="mb-3 form-check">
+    <%= form.label :sold, class: 'form-check-label' %>
+    <%= form.check_box :sold, class: 'form-check-input' %>
+    </div>
     
     <div>
     <%= form.submit class: 'btn btn-primary' %>
