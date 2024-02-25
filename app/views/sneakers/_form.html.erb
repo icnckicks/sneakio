@@ -27,8 +27,8 @@
   </div>
 
   <div>
-    <%= form.label :size_category, style: "display: block" %>
-    <%= form.text_field :size_category %>
+  <%= form.label :size_category %>
+  <%= form.select :size_category, ['M', 'W', 'GS', 'PS', 'TD'], {}, { class: 'form-control' } %>  
   </div>
 
   <div>
