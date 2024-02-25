@@ -1,6 +1,6 @@
 <h1>Sneakers</h1>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Brand</th>
@@ -25,7 +25,8 @@
         <td><%= sneaker.purchase_date %></td>
         <td>
           <%= link_to 'Show', sneaker, class: 'btn btn-sm btn-info' %>
-          <%= link_to 'Duplicate', duplicate_sneaker_path(sneaker), class: 'btn btn-sm btn-secondary' %>
+          <%= link_to 'Edit', edit_sneaker_path(sneaker), class: 'btn btn-sm btn-warning' %>
+          <%= link_to 'Dup', duplicate_sneaker_path(sneaker), class: 'btn btn-sm btn-secondary' %>
         </td>
       </tr>
     <% end %>
