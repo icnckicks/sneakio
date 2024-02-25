@@ -10,4 +10,9 @@ class Sneaker < ApplicationRecord
         purchase_date + return_period.days
     end
     
+    def days_in_inventory
+        return unless purchase_date
+        (Date.today - purchase_date).to_i
+    end
+    
 end
