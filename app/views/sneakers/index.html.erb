@@ -17,6 +17,13 @@
 
 <div class="card" style="width: 18rem;">
 <div class="card-body">
+<h5 class="card-title">Total Items Sold</h5>
+<p class="card-text"><%= Sneaker.total_item_sold %></p>
+</div>
+</div>
+
+<div class="card" style="width: 18rem;">
+<div class="card-body">
 <h5 class="card-title">Total Sales</h5>
 <p class="card-text"><%= number_to_currency(Sneaker.total_sales) %></p>
 </div>
@@ -38,6 +45,7 @@
 <th scope="col">Final Return Date</th>
 <th scope="col">Days in Inventory</th>
 <th scope="col">ROI</th>
+<th scope="col">Sold/In Stock</th>
 <th scope="col">Actions</th>
 </tr>
 </thead>
