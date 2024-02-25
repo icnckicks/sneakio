@@ -32,12 +32,18 @@ class Sneaker < ApplicationRecord
         ((sale_price - purchase_price) / purchase_price.to_f) * 100
     end
     
+    def profit
+        return 0 unless purchase_price.present? && sale_price.present? && sale_price > 0
+        (sale_price - purchase_price)
+    end
+    
     def self.total_item_sold
         where(sold: true).sum(:quantity)
     end
     
     def self.total_profit
-        where(sold: true).sum { |sneaker| (sneaker.sale_price || 0) - (sneaker.purchase_price || 0) }
+        where(sold: true).sum { |sneaker| sneaker.profit }
     end
+    
     
 end
