@@ -2,14 +2,35 @@
 
 <h1>Sneakers</h1>
 
-<div id="sneakers">
-  <% @sneakers.each do |sneaker| %>
-    <%= render sneaker %>
-    <p>
-      <%= link_to "Show this sneaker", sneaker %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Brand</th>
+      <th scope="col">Name</th>
+      <th scope="col">Size</th>
+      <th scope="col">Size Category</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Purchase Price</th>
+      <th scope="col">Purchase Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sneakers.each do |sneaker| %>
+      <tr>
+        <td><%= sneaker.brand %></td>
+        <td><%= sneaker.name %></td>
+        <td><%= sneaker.size %></td>
+        <td><%= sneaker.size_category %></td>
+        <td><%= sneaker.quantity %></td>
+        <td><%= number_to_currency(sneaker.purchase_price) %></td>
+        <td><%= sneaker.purchase_date %></td>
+        <td>
+          <%= link_to 'Show', sneaker, class: 'btn btn-sm btn-info' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'New Sneaker', new_sneaker_path, class: "btn btn-primary" %>
-
