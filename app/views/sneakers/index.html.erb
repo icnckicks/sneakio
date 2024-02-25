@@ -57,6 +57,13 @@
   <td><%= sneaker.days_in_inventory %></td>
   <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
   <td>
+  <% if sneaker.sold %>
+  Sold
+  <% else %>
+  In Stock
+  <% end %>
+  </td>
+  <td>
   <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton<%= sneaker.id %>" data-bs-toggle="dropdown" aria-expanded="false">
   Actions
