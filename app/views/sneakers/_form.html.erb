@@ -1,59 +1,56 @@
-<%= form_with(model: sneaker) do |form| %>
+<%= form_with(model: sneaker, class: 'needs-validation', novalidate: true) do |form| %>
   <% if sneaker.errors.any? %>
-  <div style="color: red">
-  <h2><%= pluralize(sneaker.errors.count, "error") %> prohibited this sneaker from being saved:</h2>
-  
-  <ul>
-  <% sneaker.errors.each do |error| %>
-    <li><%= error.full_message %></li>
-    <% end %>
-    </ul>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(sneaker.errors.count, "error") %> prohibited this sneaker from being saved:</h4>
+      <ul>
+        <% sneaker.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
     </div>
-    <% end %>
-    
-    <div>
-    <%= form.label :brand, style: "display: block" %>
-    <%= form.text_field :brand %>
-    </div>
-    
-    <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-    </div>
-    
-    <div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :colorway %>
     <%= form.text_field :colorway, class: 'form-control' %>
-    
-    </div>
-    
-    <div>
-    <%= form.label :size, style: "display: block" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :size %>
     <%= form.text_field :size, class: 'form-control', placeholder: 'e.g., 10 or 9.5' %>
-    </div>
-    
-    <div>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :size_category %>
-    <%= form.select :size_category, ['M', 'W', 'GS', 'PS', 'TD'], {}, { class: 'form-control' } %>  
-    </div>
-    
-    <div>
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity %>
-    </div>
-    
-    <div>
-    <%= form.label :purchase_price, style: "display: block" %>
-    <%= form.text_field :purchase_price %>
-    </div>
-    
-    <div>
-    <%= form.label :purchase_date, style: "display: block" %>
-    <%= form.date_field :purchase_date %>
-    </div>
-    
-    <div>
-    <%= form.submit %>
-    </div>
-    <% end %>
-    
+    <%= form.select :size_category, ['M', 'W', 'GS', 'PS', 'TD'], {}, { class: 'form-control' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :purchase_price %>
+    <%= form.text_field :purchase_price, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :purchase_date %>
+    <%= form.date_field :purchase_date, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
