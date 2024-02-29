@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_25_121713) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_29_121739) do
   create_table "sneakers", force: :cascade do |t|
     t.string "brand"
     t.string "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_121713) do
     t.integer "return_period"
     t.decimal "sale_price"
     t.boolean "sold"
+    t.string "sku"
   end
 
 end
