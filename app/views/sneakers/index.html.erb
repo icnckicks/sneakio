@@ -1,100 +1,94 @@
 <h1>Sneakers</h1>
 
 <div class="d-flex justify-content-around">
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<h5 class="card-title">Total Items in Stock</h5>
-<p class="card-text"><%= Sneaker.total_items_in_stock %></p>
-</div>
-</div>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Total Items in Stock</h5>
+      <p class="card-text"><%= Sneaker.total_items_in_stock %></p>
+    </div>
+  </div>
 
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<h5 class="card-title">Total Inventory Value</h5>
-<p class="card-text"><%= number_to_currency(Sneaker.total_inventory_value) %></p>
-</div>
-</div>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Total Inventory Value</h5>
+      <p class="card-text"><%= number_to_currency(Sneaker.total_inventory_value) %></p>
+    </div>
+  </div>
 
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<h5 class="card-title">Total Items Sold</h5>
-<p class="card-text"><%= Sneaker.total_item_sold %></p>
-</div>
-</div>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Total Items Sold</h5>
+      <p class="card-text"><%= Sneaker.total_item_sold %></p>
+    </div>
+  </div>
 
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<h5 class="card-title">Total Sales</h5>
-<p class="card-text"><%= number_to_currency(Sneaker.total_sales) %></p>
-</div>
-</div>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Total Sales</h5>
+      <p class="card-text"><%= number_to_currency(Sneaker.total_sales) %></p>
+    </div>
+  </div>
 
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<h5 class="card-title">Total Profit</h5>
-<p class="card-text"><%= number_to_currency(Sneaker.total_profit) %></p>
-</div>
-</div>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Total Profit</h5>
+      <p class="card-text"><%= number_to_currency(Sneaker.total_profit) %></p>
+    </div>
+  </div>
 </div>
 
 <table class="table table-striped">
-<thead>
-<tr>
-<th scope="col">Brand</th>
-<th scope="col">Name</th>
-<th scope="col">Colorway</th>
-<th scope="col">Size</th>
-<th scope="col">Size Category</th>
-<th scope="col">Quantity</th>
-<th scope="col">Source</th>
-<th scope="col">Purchase Price</th>
-<th scope="col">Purchase Date</th>
-<th scope="col">Final Return Date</th>
-<th scope="col">Days in Inventory</th>
-<th scope="col">ROI</th>
-<th scope="col">Profit</th>
-<th scope="col">Sold/In Stock</th>
-<th scope="col">Actions</th>
-</tr>
-</thead>
-<tbody>
-<% @sneakers.each do |sneaker| %>
-  <tr>
-  <td><%= sneaker.brand %></td>
-  <td><%= sneaker.name %></td>
-  <td><small><%= sneaker.colorway %></small></td>
-  <td><%= sneaker.size %></td>
-  <td><%= sneaker.size_category %></td>
-  <td><%= sneaker.quantity %></td>
-  <td><%= sneaker.source %></td>
-  <td><%= number_to_currency(sneaker.purchase_price) %></td>
-  <td><%= sneaker.purchase_date %></td>
-  <td><%= sneaker.final_return_date %></td>
-  <td><%= sneaker.days_in_inventory %></td>
-  <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
-  <td><%= number_to_currency(sneaker.profit) %></td>
-  <td>
-  <% if sneaker.sold %>
-  Sold
-  <% else %>
-  In Stock
-  <% end %>
-  </td>
-  <td>
-  <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton<%= sneaker.id %>" data-bs-toggle="dropdown" aria-expanded="false">
-  Actions
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<%= sneaker.id %>">
-  <li><%= link_to 'Show', sneaker, class: 'dropdown-item' %></li>
-  <li><%= link_to 'Edit', edit_sneaker_path(sneaker), class: 'dropdown-item' %></li>
-  <li><%= link_to 'Duplicate', duplicate_sneaker_path(sneaker), class: 'dropdown-item' %></li>
-  <li><%= link_to 'Delete', sneaker, method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
-  </ul>
-  </div>
-  </td>
-  </tr>
-  <% end %>
+  <thead>
+    <tr>
+      <th scope="col">Brand</th>
+      <th scope="col">Name</th>
+      <th scope="col">Colorway</th>
+      <th scope="col">Size</th>
+      <th scope="col">Size Category</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Source</th>
+      <th scope="col">Purchase Price</th>
+      <th scope="col">Purchase Date</th>
+      <th scope="col">Final Return Date</th>
+      <th scope="col">Days in Inventory</th>
+      <th scope="col">ROI</th>
+      <th scope="col">Profit</th>
+      <th scope="col">Sold/In Stock</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sneakers.each do |sneaker| %>
+    <tr>
+      <td><%= sneaker.brand %></td>
+      <td><%= link_to sneaker.name, sneaker_path(sneaker) %></td>
+      <td><small><%= sneaker.colorway %></small></td>
+      <td><%= sneaker.size %></td>
+      <td><%= sneaker.size_category %></td>
+      <td><%= sneaker.quantity %></td>
+      <td><%= sneaker.source %></td>
+      <td><%= number_to_currency(sneaker.purchase_price) %></td>
+      <td><%= sneaker.purchase_date %></td>
+      <td><%= sneaker.final_return_date %></td>
+      <td><%= sneaker.days_in_inventory %></td>
+      <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
+      <td><%= number_to_currency(sneaker.profit) %></td>
+      <td>
+        <% if sneaker.sold %>
+        Sold
+        <% else %>
+        In Stock
+        <% end %>
+      </td>
+      <td>
+        <%= link_to edit_sneaker_path(sneaker) do %>
+        <i class="bi bi-pencil-square"></i>
+        <% end %>
+        <%= link_to duplicate_sneaker_path(sneaker) do %>
+        <i class="bi bi-files"></i>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
   </tbody>
-  </table>
-  
+</table>
