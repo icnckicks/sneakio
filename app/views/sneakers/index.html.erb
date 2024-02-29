@@ -37,7 +37,8 @@
   </div>
 </div>
 
-<table class="table table-striped">
+<div class="table-responsive">
+<table class="table table-striped" id="myTable">
   <thead>
     <tr>
       <th scope="col">Brand</th>
@@ -61,7 +62,7 @@
     <% @sneakers.each do |sneaker| %>
     <tr>
       <td><%= sneaker.brand %></td>
-      <td><%= link_to sneaker.name, sneaker_path(sneaker) %></td>
+      <td><strong><%= link_to sneaker.name, sneaker_path(sneaker) %></strong></td>
       <td><small><%= sneaker.colorway %></small></td>
       <td><%= sneaker.size %></td>
       <td><%= sneaker.size_category %></td>
@@ -92,3 +93,4 @@
     <% end %>
   </tbody>
 </table>
+</div>
