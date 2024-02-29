@@ -52,6 +52,7 @@
       <th scope="col">Purchase Date</th>
       <th scope="col">Final Return Date</th>
       <th scope="col">Days in Inventory</th>
+      <th scope="col">Sale Price</th>
       <th scope="col">ROI</th>
       <th scope="col">Profit</th>
       <th scope="col">Sold/In Stock</th>
@@ -72,6 +73,7 @@
       <td><%= sneaker.purchase_date %></td>
       <td><%= sneaker.final_return_date %></td>
       <td><%= sneaker.days_in_inventory %></td>
+      <td><%= sneaker.sale_price %></td>
       <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
       <td><%= number_to_currency(sneaker.profit) %></td>
       <td>
