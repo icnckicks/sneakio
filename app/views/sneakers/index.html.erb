@@ -38,19 +38,18 @@
 </div>
 
 <div class="table-responsive mt-4">
-<table class="table table-striped" id="myTable">
+<table class="table table-sm table-striped table-hover" id="myTable">
   <thead>
     <tr>
       <th scope="col">Brand</th>
       <th scope="col">Name</th>
-      <th scope="col">Colorway</th>
+      <!--<th scope="col">Colorway</th>-->
       <th scope="col">Size</th>
-      <th scope="col">Size Category</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Source</th>
+      <!--<th scope="col">Quantity</th>-->
+      <!-- <th scope="col">Source</th> -->
       <th scope="col">Purchase Price</th>
-      <th scope="col">Purchase Date</th>
-      <th scope="col">Final Return Date</th>
+      <!-- <th scope="col">Purchase Date</th> -->
+      <!-- <th scope="col">Final Return Date</th> -->
       <th scope="col">Days in Inventory</th>
       <th scope="col">Sale Price</th>
       <th scope="col">ROI</th>
@@ -64,14 +63,13 @@
     <tr>
       <td><%= sneaker.brand %></td>
       <td><strong><%= link_to sneaker.name, sneaker_path(sneaker) %></strong></td>
-      <td><small><%= sneaker.colorway %></small></td>
-      <td><%= sneaker.size %></td>
-      <td><%= sneaker.size_category %></td>
-      <td><%= sneaker.quantity %></td>
-      <td><%= sneaker.source %></td>
+      <!--<td><small><%= sneaker.colorway %></small></td>-->
+      <td><%= sneaker.size %> <%= sneaker.size_category %></td>
+      <!--<td><%= sneaker.quantity %></td>-->
+      <!-- <td><%= sneaker.source %></td> -->
       <td><%= number_to_currency(sneaker.purchase_price) %></td>
-      <td><%= sneaker.purchase_date %></td>
-      <td><%= sneaker.final_return_date %></td>
+      <!--<td><%= sneaker.purchase_date %></td>-->
+      <!-- <td><%= sneaker.final_return_date %></td> -->
       <td><%= sneaker.days_in_inventory %></td>
       <td><%= sneaker.sale_price %></td>
       <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
