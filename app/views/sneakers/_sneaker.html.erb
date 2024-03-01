@@ -1,37 +1,29 @@
-<div id="<%= dom_id sneaker %>">
-  <p>
-    <strong>Brand:</strong>
-    <%= sneaker.brand %>
-  </p>
+<div id="<%= dom_id sneaker %>" class="mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= sneaker.name %> - <%= sneaker.brand %></h5>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Size:</strong> <%= sneaker.size %></p>
+          <p><strong>Size Category:</strong> <%= sneaker.size_category %></p>
+          <p><strong>Quantity:</strong> <%= sneaker.quantity %></p>
+          <p><strong>Purchase Price:</strong> <%= number_to_currency(sneaker.purchase_price) %></p>
+          <p><strong>Purchase Date:</strong> <%= sneaker.purchase_date %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>SKU:</strong> <%= sneaker.sku %></p>
+          <p><strong>Source:</strong> <%= sneaker.source %></p>
+          <p><strong>Return Period:</strong> <%= sneaker.return_period %> days</p>
+          <p><strong>Sale Price:</strong> <%= number_to_currency(sneaker.sale_price) %></p>
+          <p><strong>Status:</strong> <%= sneaker.sold ? 'Sold' : 'Available' %></p>
+        </div>
+      </div>
 
-  <p>
-    <strong>Name:</strong>
-    <%= sneaker.name %>
-  </p>
-
-  <p>
-    <strong>Size:</strong>
-    <%= sneaker.size %>
-  </p>
-
-  <p>
-    <strong>Size category:</strong>
-    <%= sneaker.size_category %>
-  </p>
-
-  <p>
-    <strong>Quantity:</strong>
-    <%= sneaker.quantity %>
-  </p>
-
-  <p>
-    <strong>Purchase price:</strong>
-    <%= sneaker.purchase_price %>
-  </p>
-
-  <p>
-    <strong>Purchase date:</strong>
-    <%= sneaker.purchase_date %>
-  </p>
-
+      <% if sneaker.sold %>
+        <p><strong>Profit:</strong> <%= number_to_currency(sneaker.profit) %></p>
+        <p><strong>Days in Inventory:</strong> <%= sneaker.days_in_inventory %></p>
+      <% end %>
+    </div>
+  </div>
 </div>
