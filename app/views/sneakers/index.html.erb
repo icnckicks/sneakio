@@ -32,8 +32,8 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Total Sales</h5>
-        <p class="card-text"><%= number_to_currency(Sneaker.total_sales) %></p>
+        <h5 class="card-title">Total Revenue</h5>
+        <p class="card-text"><%= number_to_currency(Sneaker.total_revenue) %></p>
       </div>
     </div>
   </div>
@@ -66,6 +66,7 @@
         <!-- <th scope="col">Final Return Date</th> -->
         <th scope="col">Days in Inventory</th>
         <th scope="col">Sale Price</th>
+        <th scope="col">Payout</th>
         <th scope="col">ROI</th>
         <th scope="col">Profit</th>
         <th scope="col">Sold/In Stock</th>
@@ -88,6 +89,7 @@
         <!-- <td><%= sneaker.final_return_date %></td> -->
         <td><%= sneaker.days_in_inventory %></td>
         <td><%= sneaker.sale_price %></td>
+        <td><%= number_to_currency(sneaker.payout) %></td>
         <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
         <td><%= number_to_currency(sneaker.profit) %></td>
         <td>

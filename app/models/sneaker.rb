@@ -30,13 +30,13 @@ class Sneaker < ApplicationRecord
     end
     
     def roi
-        return 0 unless purchase_price.present? && sale_price.present? && sale_price > 0
-        ((sale_price - purchase_price) / purchase_price.to_f) * 100
+        return 0 unless purchase_price.present? && payout.present? && payout > 0
+        ((payout - purchase_price) / purchase_price.to_f) * 100
     end
     
     def profit
-        return 0 unless purchase_price.present? && sale_price.present? && sale_price > 0
-        (sale_price - purchase_price)
+        return 0 unless purchase_price.present? && payout.present? && payout > 0
+        (payout - purchase_price)
     end
     
     def self.total_item_sold
@@ -45,6 +45,10 @@ class Sneaker < ApplicationRecord
     
     def self.total_profit
         where(sold: true).sum { |sneaker| sneaker.profit }
+    end
+
+    def self.total_revenue
+        where(sold: true).sum { |sneaker| sneaker.payout }
     end
     
     
