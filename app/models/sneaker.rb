@@ -5,7 +5,7 @@ class Sneaker < ApplicationRecord
     validates :purchase_price, numericality: true
     validates :size_category, inclusion: { in: %w(M W GS PS TD) }
     validates :payout, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-
+    
     
     def final_return_date
         return if purchase_date.blank? || return_period.blank?
@@ -34,6 +34,15 @@ class Sneaker < ApplicationRecord
         ((payout - purchase_price) / purchase_price.to_f) * 100
     end
     
+    def self.total_combined_roi
+        total_payout = where(sold: true).sum(:payout)
+        total_purchase_price = where(sold: true).sum(:purchase_price)
+        
+        return 0 if total_purchase_price == 0
+        ((total_payout - total_purchase_price) / total_purchase_price.to_f) * 100
+    end
+    
+    
     def profit
         return 0 unless purchase_price.present? && payout.present? && payout > 0
         (payout - purchase_price)
@@ -46,11 +55,11 @@ class Sneaker < ApplicationRecord
     def self.total_profit
         where(sold: true).sum { |sneaker| sneaker.profit }
     end
-
+    
     def self.total_revenue
         where(sold: true).sum { |sneaker| sneaker.payout }
     end
-
+    
     def self.total_spend
         sum(:purchase_price)
     end
