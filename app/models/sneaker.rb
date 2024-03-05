@@ -50,6 +50,10 @@ class Sneaker < ApplicationRecord
     def self.total_revenue
         where(sold: true).sum { |sneaker| sneaker.payout }
     end
+
+    def self.total_spend
+        sum(:purchase_price)
+    end
     
     
 end
