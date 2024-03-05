@@ -78,6 +78,7 @@
         <th scope="col">SKU</th>
         <!--<th scope="col">Colorway</th>-->
         <th scope="col">Size</th>
+        <th scope="col">Box</th>
         <!--<th scope="col">Quantity</th>-->
         <!-- <th scope="col">Source</th> -->
         <th scope="col">Purchase Price</th>
@@ -101,6 +102,7 @@
         <td><%= sneaker.sku %></td>
         <!--<td><small><%= sneaker.colorway %></small></td>-->
         <td><%= sneaker.size %> <%= sneaker.size_category %></td>
+        <td><%= sneaker.box %></td>
         <!--<td><%= sneaker.quantity %></td>-->
         <!-- <td><%= sneaker.source %></td> -->
         <td><%= number_to_currency(sneaker.purchase_price) %></td>

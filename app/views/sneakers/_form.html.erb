@@ -42,6 +42,12 @@
     </div>
     
     <div class="mb-3">
+    <%= form.label :box %>
+    <%= form.select :box, ['Good Box', 'Damaged Box', 'No lid', 'No Box'], {}, { class: 'form-control' } %>
+    </div>
+    
+    
+    <div class="mb-3">
     <%= form.label :quantity %>
     <%= form.number_field :quantity, class: 'form-control' %>
     </div>
