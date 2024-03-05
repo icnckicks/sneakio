@@ -4,6 +4,8 @@ class Sneaker < ApplicationRecord
     validates :size, :quantity, numericality: { greater_than: 0 }
     validates :purchase_price, numericality: true
     validates :size_category, inclusion: { in: %w(M W GS PS TD) }
+    validates :payout, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+
     
     def final_return_date
         return if purchase_date.blank? || return_period.blank?

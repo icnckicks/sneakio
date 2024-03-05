@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_29_121739) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_190002) do
+  create_table "listing_platforms", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.integer "sneaker_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sneaker_id"], name: "index_listing_platforms_on_sneaker_id"
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.integer "sneaker_id", null: false
+    t.decimal "listing_price"
+    t.string "listing_platform"
+    t.date "date_listed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sneaker_id"], name: "index_listings_on_sneaker_id"
+  end
+
   create_table "sneakers", force: :cascade do |t|
     t.string "brand"
     t.string "name"
@@ -27,6 +46,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_121739) do
     t.decimal "sale_price"
     t.boolean "sold"
     t.string "sku"
+    t.decimal "payout"
   end
 
+  add_foreign_key "listing_platforms", "sneakers"
+  add_foreign_key "listings", "sneakers"
 end
