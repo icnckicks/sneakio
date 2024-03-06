@@ -87,6 +87,17 @@
     <%= form.label :sold, class: 'form-check-label' %>
     <%= form.check_box :sold, class: 'form-check-input' %>
     </div>
+
+    <h3>Listings</h3>
+    <%= form.fields_for :listings do |listing_form| %>
+      <div class="field">
+        <%= listing_form.label :platform %>
+        <%= listing_form.text_field :platform %>
+  
+        <%= listing_form.label :price %>
+        <%= listing_form.number_field :price, step: :any %>
+      </div>
+    <% end %>
     
     <div>
     <%= form.submit class: 'btn btn-primary' %>

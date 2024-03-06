@@ -1,4 +1,7 @@
 class Sneaker < ApplicationRecord
+
+    has_many :listings, dependent: :destroy
+    accepts_nested_attributes_for :listings, reject_if: :all_blank, allow_destroy: true
     validates :brand, :name, presence: true
     validates :colorway, length: { maximum: 100 }
     validates :size, :quantity, numericality: { greater_than: 0 }

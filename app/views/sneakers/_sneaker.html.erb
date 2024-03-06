@@ -17,6 +17,21 @@
           <p><strong>Return Period:</strong> <%= sneaker.return_period %> days</p>
           <p><strong>Sale Price:</strong> <%= number_to_currency(sneaker.sale_price) %></p>
           <p><strong>Status:</strong> <%= sneaker.sold ? 'Sold' : 'Available' %></p>
+          <h5>Listings:</h5>
+  <% if sneaker.listings.any? %>
+    <ul>
+      <% sneaker.listings.each do |listing| %>
+        <li>
+          <strong>Platform:</strong> <%= listing.platform %>,
+          <strong>Price:</strong> <%= number_to_currency(listing.price) %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No listings available.</p>
+  <% end %>
+
+          
         </div>
       </div>
 

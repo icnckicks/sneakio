@@ -17,11 +17,15 @@ class SneakersController < ApplicationController
   # GET /sneakers/new
   def new
     @sneaker = Sneaker.new
+    @sneaker.listings.build
   end
 
   # GET /sneakers/1/edit
   def edit
+    @sneaker = Sneaker.find(params[:id])
+    @sneaker.listings.build if @sneaker.listings.empty?
   end
+  
 
   # POST /sneakers or /sneakers.json
   def create
@@ -76,6 +80,13 @@ class SneakersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sneaker_params
-      params.require(:sneaker).permit(:brand, :name, :size, :size_category, :quantity, :purchase_price, :purchase_date, :colorway, :source, :return_period, :sale_price, :sold, :sku, :payout, :box)
-    end    
+      params.require(:sneaker).permit(
+        :brand, :name, :size, :size_category, :quantity, :purchase_price, 
+        :purchase_date, :colorway, :source, :return_period, :sale_price, 
+        :sold, :sku, :payout, :box,
+        listings_attributes: [:id, :platform, :price, :_destroy]
+      )
+    end
+    
+       
 end

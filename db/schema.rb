@@ -10,21 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_05_194229) do
-  create_table "listing_platforms", force: :cascade do |t|
-    t.string "name"
-    t.decimal "price"
-    t.integer "sneaker_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sneaker_id"], name: "index_listing_platforms_on_sneaker_id"
-  end
-
+ActiveRecord::Schema[7.1].define(version: 2024_03_06_193924) do
   create_table "listings", force: :cascade do |t|
     t.integer "sneaker_id", null: false
-    t.decimal "listing_price"
-    t.string "listing_platform"
-    t.date "date_listed"
+    t.string "platform"
+    t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sneaker_id"], name: "index_listings_on_sneaker_id"
@@ -50,6 +40,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_194229) do
     t.string "box"
   end
 
-  add_foreign_key "listing_platforms", "sneakers"
   add_foreign_key "listings", "sneakers"
 end
