@@ -7,7 +7,7 @@ class SneakersController < ApplicationController
 
   # GET /sneakers or /sneakers.json
   def index
-    @sneakers = Sneaker.all
+    @sneakers = Sneaker.where(sold: false)
   end
 
   # GET /sneakers/1 or /sneakers/1.json
