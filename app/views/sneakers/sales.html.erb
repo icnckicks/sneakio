@@ -1,0 +1,76 @@
+<!-- app/views/sneakers/sales.html.erb -->
+
+<h1>Sales</h1>
+
+<div class="row g-4">
+
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Items Sold</h5>
+        <p class="card-text"><%= Sneaker.total_item_sold %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Revenue</h5>
+        <p class="card-text"><%= number_to_currency(Sneaker.total_revenue) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Profit</h5>
+        <p class="card-text"><%= number_to_currency(Sneaker.total_profit) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Overall ROI</h5>
+        <p class="card-text"><%= number_to_percentage(Sneaker.total_combined_roi, precision: 2) %></p>
+      </div>
+    </div>
+  </div>
+
+<table class="table" id="myTable">
+  <thead>
+    <tr>
+      <th scope="col">Brand</th>
+      <th scope="col">Name</th>
+      <th scope="col">SKU</th>
+      <th scope="col">Size</th>
+      <th scope="col">Purchase Price</th>
+      <th scope="col">Sale Price</th>
+      <th scope="col">Payout</th>
+      <th scope="col">ROI</th>
+      <th scope="col">Profit</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sold_sneakers.each do |sneaker| %>
+      <tr>
+        <td><%= sneaker.brand %></td>
+        <td><%= sneaker.name %></td>
+        <td><%= sneaker.sku %></td>
+        <td><%= sneaker.size %></td>
+        <td><%= number_to_currency(sneaker.purchase_price) %></td>
+        <td><%= number_to_currency(sneaker.sale_price) %></td>
+        <td><%= number_to_currency(sneaker.payout) %></td>
+        <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
+        <td><%= number_to_currency(sneaker.profit) %></td>
+        <td>
+          <!-- Add action links here (e.g., show, edit) -->
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

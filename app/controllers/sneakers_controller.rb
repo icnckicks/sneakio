@@ -1,6 +1,10 @@
 class SneakersController < ApplicationController
   before_action :set_sneaker, only: %i[ show edit update destroy ]
 
+  def sales
+    @sold_sneakers = Sneaker.where(sold: true)
+  end
+
   # GET /sneakers or /sneakers.json
   def index
     @sneakers = Sneaker.all

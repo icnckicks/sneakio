@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "sneakers#index"
+
+  get 'sales', to: 'sneakers#sales'
 end

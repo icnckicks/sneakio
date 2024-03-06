@@ -109,7 +109,7 @@
         <!--<td><%= sneaker.purchase_date %></td>-->
         <!-- <td><%= sneaker.final_return_date %></td> -->
         <td><%= sneaker.days_in_inventory %></td>
-        <td><%= sneaker.sale_price %></td>
+        <td><%= number_to_currency(sneaker.sale_price) %></td>
         <td><%= number_to_currency(sneaker.payout) %></td>
         <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
         <td><%= number_to_currency(sneaker.profit) %></td>
