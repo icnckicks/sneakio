@@ -89,10 +89,10 @@
 
   
   
-  <%= link_to 'Add Listing', '#', id: 'add_listing', class: 'btn btn-secondary' %>
+<%= link_to 'Add Listing', '#', id: 'add_listing', class: 'btn btn-secondary mb-4' %>
 
-<div id="listings">
-<%= form.submit class: 'btn btn-primary' %>
+<div id="listings" class="mb-3">
+<%= form.submit class: 'btn btn-primary mb-4' %>
   <%= form.fields_for :listings do |listing_form| %>
     <%= render 'listing_fields', f: listing_form %>
   <% end %>
