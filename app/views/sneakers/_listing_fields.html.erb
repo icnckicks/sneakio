@@ -1,0 +1,9 @@
+<div class="nested-fields">
+  <%= f.hidden_field :_destroy %>
+  <%= f.label :platform %>
+  <%= f.text_field :platform %>
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+
+  <%= link_to 'Remove', '#', class: 'remove_fields' %>
+</div>
