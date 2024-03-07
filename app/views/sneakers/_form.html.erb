@@ -107,21 +107,26 @@
     if (addListingBtn) {
       addListingBtn.addEventListener('click', function(e) {
         e.preventDefault();
+        e.stopPropagation();
 
         var listingsContainer = document.getElementById('listings');
-        var newField = listingsContainer.querySelector('.nested-fields').cloneNode(true);
-        var newTime = new Date().getTime();
+        var originalField = listingsContainer.querySelector('.nested-fields:not(.cloned)');
+        if (originalField) {
+          var newField = originalField.cloneNode(true);
+          newField.classList.add('cloned');
+          var newTime = new Date().getTime();
 
-        newField.querySelectorAll('input, select, textarea').forEach(function(input) {
-          if (input.name) {
-            input.name = input.name.replace(/\[\d+\]/, '[' + newTime + ']');
-          }
-          if (input.type !== 'hidden') {
-            input.value = '';
-          }
-        });
+          newField.querySelectorAll('input, select, textarea').forEach(function(input) {
+            if (input.name) {
+              input.name = input.name.replace(/\[\d+\]/, '[' + newTime + ']');
+            }
+            if (input.type !== 'hidden') {
+              input.value = '';
+            }
+          });
 
-        listingsContainer.appendChild(newField);
+          listingsContainer.appendChild(newField);
+        }
       });
     }
 

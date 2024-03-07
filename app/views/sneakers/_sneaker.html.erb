@@ -22,7 +22,7 @@
     <ul>
       <% sneaker.listings.each do |listing| %>
         <li>
-          <strong>Platform:</strong> <%= listing.platform %>,
+          <strong>Platform:</strong> <%= listing.platform %> |
           <strong>Price:</strong> <%= number_to_currency(listing.price) %>
         </li>
       <% end %>
