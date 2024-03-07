@@ -1,21 +1,23 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Sneakio</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <%= link_to 'Sneakio', root_path, class: 'navbar-brand' %>
+    
+    <%= button_tag type: 'button', class: 'navbar-toggler', data: { bs_toggle: 'collapse', bs_target: '#navbarNav' }, 'aria-controls': 'navbarNav', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' do %>
       <span class="navbar-toggler-icon"></span>
-    </button>
+    <% end %>
+    
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'Inventory', sneakers_path, class: "nav-link" %>
+          <%= link_to 'Inventory', sneakers_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Sales', sales_path, class: "nav-link" %>
+          <%= link_to 'Sales', sales_path, class: 'nav-link' %>
         </li>
       </ul>
       <div class="d-flex">
-        <%= link_to 'New Sneaker', new_sneaker_path, class: "btn btn-primary" %>
+        <%= link_to 'New Sneaker', new_sneaker_path, class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
