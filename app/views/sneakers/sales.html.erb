@@ -40,23 +40,23 @@
     </div>
   </div>
 
-<table class="table" id="myTable">
-  <thead>
-    <tr>
-      <th scope="col">Brand</th>
-      <th scope="col">Name</th>
-      <th scope="col">SKU</th>
-      <th scope="col">Size</th>
-      <th scope="col">Purchase Price</th>
-      <th scope="col">Sale Price</th>
-      <th scope="col">Payout</th>
-      <th scope="col">ROI</th>
-      <th scope="col">Profit</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sold_sneakers.each do |sneaker| %>
+  <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">Brand</th>
+        <th scope="col">Name</th>
+        <th scope="col">SKU</th>
+        <th scope="col">Size</th>
+        <th scope="col">Purchase Price</th>
+        <th scope="col">Sale Price</th>
+        <th scope="col">Payout</th>
+        <th scope="col">ROI</th>
+        <th scope="col">Profit</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sold_sneakers.each do |sneaker| %>
       <tr>
         <td><%= sneaker.brand %></td>
         <td><%= sneaker.name %></td>
@@ -68,9 +68,13 @@
         <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
         <td><%= number_to_currency(sneaker.profit) %></td>
         <td>
-          <!-- Add action links here (e.g., show, edit) -->
+          <%= link_to 'Show', sneaker_path(sneaker), class: 'btn btn-sm btn-info' %>
+          <%= link_to 'Edit', edit_sneaker_path(sneaker), class: 'btn btn-sm btn-warning' %>
+          <!-- Add other action links if needed -->
         </td>
+        
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
+  
