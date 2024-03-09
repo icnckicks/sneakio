@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_09_091916) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_09_102327) do
   create_table "listings", force: :cascade do |t|
     t.integer "sneaker_id", null: false
     t.string "platform"
@@ -39,6 +39,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_09_091916) do
     t.decimal "payout"
     t.string "box"
     t.date "sold_date"
+    t.boolean "ups"
+    t.boolean "fedex"
+    t.boolean "usps"
+    t.string "tracking_number"
   end
 
   add_foreign_key "listings", "sneakers"

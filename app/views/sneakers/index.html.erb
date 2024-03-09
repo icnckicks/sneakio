@@ -91,6 +91,9 @@
           <%= link_to duplicate_sneaker_path(sneaker) do %>
           <i class="bi bi-files"></i>
           <% end %>
+          <% if sneaker.tracking_number.present? %>
+            <%= link_to 'Track', track_sneaker_path(sneaker), class: 'btn btn-sm btn-info' %>
+          <% end %>
         </td>
       </tr>
       <% end %>

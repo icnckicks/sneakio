@@ -1,36 +1,36 @@
 class SneakersController < ApplicationController
   before_action :set_sneaker, only: %i[ show edit update destroy ]
-
+  
   def sales
     @sold_sneakers = Sneaker.where(sold: true)
   end
-
+  
   # GET /sneakers or /sneakers.json
   def index
     @sneakers = Sneaker.where(sold: false)
   end
-
+  
   # GET /sneakers/1 or /sneakers/1.json
   def show
   end
-
+  
   # GET /sneakers/new
   def new
     @sneaker = Sneaker.new
     @sneaker.listings.build
   end
-
+  
   # GET /sneakers/1/edit
   def edit
     @sneaker = Sneaker.find(params[:id])
     @sneaker.listings.build if @sneaker.listings.empty?
   end
   
-
+  
   # POST /sneakers or /sneakers.json
   def create
     @sneaker = Sneaker.new(sneaker_params)
-
+    
     respond_to do |format|
       if @sneaker.save
         format.html { redirect_to sneaker_url(@sneaker), notice: "Sneaker was successfully created." }
@@ -41,7 +41,7 @@ class SneakersController < ApplicationController
       end
     end
   end
-
+  
   # PATCH/PUT /sneakers/1 or /sneakers/1.json
   def update
     respond_to do |format|
@@ -54,39 +54,53 @@ class SneakersController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /sneakers/1 or /sneakers/1.json
   def destroy
     @sneaker.destroy!
-
+    
     respond_to do |format|
       format.html { redirect_to sneakers_url, notice: "Sneaker was successfully destroyed." }
       format.json { head :no_content }
     end
   end
-
+  
   def duplicate
     original = Sneaker.find(params[:id])
     @sneaker = original.dup
     render :new
   end
   
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sneaker
-      @sneaker = Sneaker.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def sneaker_params
-      params.require(:sneaker).permit(
-        :brand, :name, :size, :size_category, :quantity, :purchase_price, 
-        :purchase_date, :colorway, :source, :return_period, :sale_price, 
-        :sold, :sku, :payout, :box, :sold_date,
-        listings_attributes: [:id, :platform, :price, :_destroy]
-      )
-    end
+  def track
+    @sneaker = Sneaker.find(params[:id])
     
-       
+    if @sneaker.ups?
+      redirect_to "https://www.ups.com/track?track=yes&trackNums=#{@sneaker.tracking_number}&loc=en_US&requester=ST/trackdetails"
+    elsif @sneaker.fedex?
+      redirect_to "https://www.fedex.com/fedextrack/?trknbr=#{@sneaker.tracking_number}&trkqual=20240303000700~#{@sneaker.tracking_number}~FXSP#{@sneaker.tracking_number}"
+    elsif @sneaker.usps?
+      redirect_to "https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=#{@sneaker.tracking_number}"
+    else
+      redirect_to sneakers_path, alert: 'Tracking information not available.'
+    end
+  end
+  
+  
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sneaker
+    @sneaker = Sneaker.find(params[:id])
+  end
+  
+  # Only allow a list of trusted parameters through.
+  def sneaker_params
+    params.require(:sneaker).permit(
+    :brand, :name, :size, :size_category, :quantity, :purchase_price, 
+    :purchase_date, :colorway, :source, :return_period, :sale_price, 
+    :sold, :sku, :payout, :box, :sold_date, :ups, :fedex, :usps, :tracking_number,
+    listings_attributes: [:id, :platform, :price, :_destroy]
+    )
+  end
+  
+  
 end
