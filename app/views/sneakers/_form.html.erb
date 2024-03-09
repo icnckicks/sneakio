@@ -1,145 +1,151 @@
 <%= form_with(model: sneaker, class: 'needs-validation', novalidate: true) do |form| %>
   <% if sneaker.errors.any? %>
   <div class="alert alert-danger" role="alert">
-    <h4 class="alert-heading"><%= pluralize(sneaker.errors.count, "error") %> prohibited this sneaker from being saved:</h4>
-    <ul>
-      <% sneaker.errors.each do |error| %>
-      <li><%= error.full_message %></li>
-      <% end %>
+  <h4 class="alert-heading"><%= pluralize(sneaker.errors.count, "error") %> prohibited this sneaker from being saved:</h4>
+  <ul>
+  <% sneaker.errors.each do |error| %>
+    <li><%= error.full_message %></li>
+    <% end %>
     </ul>
-  </div>
-  <% end %>
-  
-  <div class="mb-3">
+    </div>
+    <% end %>
+    
+    <div class="mb-3">
     <%= form.label :brand %>
     <%= form.text_field :brand, class: 'form-control' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :name %>
     <%= form.text_field :name, class: 'form-control' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :sku, 'SKU' %>
     <%= form.text_field :sku, class: 'form-control' %>
-  </div>
-  
-  
-  <div class="mb-3">
+    </div>
+    
+    
+    <div class="mb-3">
     <%= form.label :colorway %>
     <%= form.text_field :colorway, class: 'form-control' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :size %>
     <%= form.text_field :size, class: 'form-control', placeholder: 'e.g., 10 or 9.5' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :size_category %>
     <%= form.select :size_category, ['M', 'W', 'GS', 'PS', 'TD'], {}, { class: 'form-control' } %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :box %>
     <%= form.select :box, ['Good Box', 'Damaged Box', 'No lid', 'No Box'], {}, { class: 'form-control' } %>
-  </div>
-  
-  
-  <div class="mb-3">
+    </div>
+    
+    
+    <div class="mb-3">
     <%= form.label :quantity %>
     <%= form.number_field :quantity, class: 'form-control' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :source %>
     <%= form.text_field :source, class: 'form-control' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :purchase_price %>
     <%= form.text_field :purchase_price, class: 'form-control' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :purchase_date %>
     <%= form.date_field :purchase_date, class: 'form-control' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :return_period %>
     <%= form.select :return_period, [14, 30, 60, 90], {}, { class: 'form-control' } %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :sale_price %>
     <%= form.text_field :sale_price, class: 'form-control' %>
-  </div>
-  
-  <div class="mb-3">
+    </div>
+    
+    <div class="mb-3">
     <%= form.label :payout %>
     <%= form.number_field :payout, step: :any, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3 form-check">
-  <%= form.label :sold, class: 'form-check-label' %>
-  <%= form.check_box :sold, class: 'form-check-input' %>
-</div>
-
-  
-  
-<%= link_to 'Add Listing', '#', id: 'add_listing', class: 'btn btn-secondary mb-4' %>
-
-<div id="listings" class="mb-3">
-<%= form.submit class: 'btn btn-primary mb-4' %>
-  <%= form.fields_for :listings do |listing_form| %>
-    <%= render 'listing_fields', f: listing_form %>
-  <% end %>
-</div>
-
-<% end %>
-
-  
-<%= javascript_tag do %>
-  document.addEventListener('turbo:load', function() {
-    var addListingBtn = document.getElementById('add_listing');
-    if (addListingBtn) {
-      addListingBtn.addEventListener('click', function(e) {
+    </div>
+    
+    <div class="mb-3 form-check">
+    <%= form.label :sold, class: 'form-check-label' %>
+    <%= form.check_box :sold, class: 'form-check-input' %>
+    </div>
+    
+    <div class="mb-3">
+    <%= form.label :sold_date %>
+    <%= form.date_field :sold_date, class: 'form-control' %>
+    </div>
+    
+    
+    
+    
+    <%= link_to 'Add Listing', '#', id: 'add_listing', class: 'btn btn-secondary mb-4' %>
+    
+    <div id="listings" class="mb-3">
+    <%= form.submit class: 'btn btn-primary mb-4' %>
+    <%= form.fields_for :listings do |listing_form| %>
+      <%= render 'listing_fields', f: listing_form %>
+      <% end %>
+      </div>
+      
+      <% end %>
+      
+      
+      <%= javascript_tag do %>
+        document.addEventListener('turbo:load', function() {
+        var addListingBtn = document.getElementById('add_listing');
+        if (addListingBtn) {
+        addListingBtn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-
+        
         var listingsContainer = document.getElementById('listings');
         var originalField = listingsContainer.querySelector('.nested-fields:not(.cloned)');
         if (originalField) {
-          var newField = originalField.cloneNode(true);
-          newField.classList.add('cloned');
-          var newTime = new Date().getTime();
-
-          newField.querySelectorAll('input, select, textarea').forEach(function(input) {
-            if (input.name) {
-              input.name = input.name.replace(/\[\d+\]/, '[' + newTime + ']');
-            }
-            if (input.type !== 'hidden') {
-              input.value = '';
-            }
-          });
-
-          listingsContainer.appendChild(newField);
-        }
-      });
-    }
-
-    document.body.addEventListener('click', function(e) {
-      if (e.target.matches('.remove_fields')) {
-        e.preventDefault();
-        var field = e.target.closest('.nested-fields');
-        field.querySelector('input[type=hidden]').value = '1';
-        field.style.display = 'none';
+        var newField = originalField.cloneNode(true);
+        newField.classList.add('cloned');
+        var newTime = new Date().getTime();
+        
+        newField.querySelectorAll('input, select, textarea').forEach(function(input) {
+        if (input.name) {
+        input.name = input.name.replace(/\[\d+\]/, '[' + newTime + ']');
       }
+      if (input.type !== 'hidden') {
+        input.value = '';
+      }
+      });
+      
+      listingsContainer.appendChild(newField);
+    }
     });
+  }
+  
+  document.body.addEventListener('click', function(e) {
+  if (e.target.matches('.remove_fields')) {
+    e.preventDefault();
+    var field = e.target.closest('.nested-fields');
+    field.querySelector('input[type=hidden]').value = '1';
+    field.style.display = 'none';
+  }
   });
-<% end %>
-
+  });
+  <% end %>
+  
   
   

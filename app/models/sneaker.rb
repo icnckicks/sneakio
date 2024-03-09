@@ -1,5 +1,5 @@
 class Sneaker < ApplicationRecord
-
+    
     has_many :listings, dependent: :destroy
     accepts_nested_attributes_for :listings, allow_destroy: true
     validates :brand, :name, presence: true
@@ -43,6 +43,14 @@ class Sneaker < ApplicationRecord
         
         return 0 if total_purchase_price == 0
         ((total_payout - total_purchase_price) / total_purchase_price.to_f) * 100
+    end
+    
+    def self.average_days_to_sell
+        sold_sneakers = where(sold: true).where.not(sold_date: nil)
+        return 0 if sold_sneakers.empty?
+        
+        total_days = sold_sneakers.sum { |sneaker| (sneaker.sold_date - sneaker.purchase_date).to_i }
+        total_days / sold_sneakers.count
     end
     
     

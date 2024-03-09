@@ -40,6 +40,18 @@
     </div>
   </div>
 
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Average Days to Sale</h5>
+        <p class="card-text"><%= Sneaker.average_days_to_sell %></p>
+      </div>
+    </div>
+  </div>
+
+
+
+
   <table class="table" id="myTable">
     <thead>
       <tr>
@@ -52,6 +64,7 @@
         <th scope="col">Payout</th>
         <th scope="col">ROI</th>
         <th scope="col">Profit</th>
+        <th scope="col">Date Sold</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -67,6 +80,7 @@
         <td><%= number_to_currency(sneaker.payout) %></td>
         <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
         <td><%= number_to_currency(sneaker.profit) %></td>
+        <td><%= sneaker.sold_date %></td>
         <td>
           <%= link_to 'Show', sneaker_path(sneaker), class: 'btn btn-sm btn-info' %>
           <%= link_to 'Edit', edit_sneaker_path(sneaker), class: 'btn btn-sm btn-warning' %>

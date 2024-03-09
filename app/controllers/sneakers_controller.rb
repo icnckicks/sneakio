@@ -83,7 +83,7 @@ class SneakersController < ApplicationController
       params.require(:sneaker).permit(
         :brand, :name, :size, :size_category, :quantity, :purchase_price, 
         :purchase_date, :colorway, :source, :return_period, :sale_price, 
-        :sold, :sku, :payout, :box,
+        :sold, :sku, :payout, :box, :sold_date,
         listings_attributes: [:id, :platform, :price, :_destroy]
       )
     end

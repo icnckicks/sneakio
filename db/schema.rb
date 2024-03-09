@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_06_193924) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_09_091916) do
   create_table "listings", force: :cascade do |t|
     t.integer "sneaker_id", null: false
     t.string "platform"
@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_193924) do
     t.string "sku"
     t.decimal "payout"
     t.string "box"
+    t.date "sold_date"
   end
 
   add_foreign_key "listings", "sneakers"
