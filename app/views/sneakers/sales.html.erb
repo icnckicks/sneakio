@@ -82,14 +82,20 @@
   <td><%= number_to_currency(sneaker.profit) %></td>
   <td><%= sneaker.sold_date %></td>
   <td>
-  <%= link_to 'Show', sneaker_path(sneaker), class: 'btn btn-sm btn-info' %>
-  <%= link_to 'Edit', edit_sneaker_path(sneaker), class: 'btn btn-sm btn-warning' %>
-  <% if sneaker.tracking_number.present? %>
-  <%= link_to 'Track', tracking_url(sneaker), target: '_blank', class: 'btn btn-primary' %>
+  <%= link_to sneaker_path(sneaker), class: 'btn btn-sm btn-info' do %>
+    <i class="bi bi-eye"></i>
   <% end %>
-  <!-- Add other action links if needed -->
-  </td>
   
+  <%= link_to edit_sneaker_path(sneaker), class: 'btn btn-sm btn-warning' do %>
+    <i class="bi bi-pencil-square"></i>
+  <% end %>
+  
+  <% if sneaker.tracking_number.present? %>
+    <%= link_to tracking_url(sneaker), target: '_blank', class: 'btn btn-sm btn-primary' do %>
+      <i class="bi bi-truck"></i>
+    <% end %>
+  <% end %>
+</td>
   </tr>
   <% end %>
   </tbody>
