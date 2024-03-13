@@ -52,6 +52,12 @@ class Sneaker < ApplicationRecord
         total_days = sold_sneakers.sum { |sneaker| (sneaker.sold_date - sneaker.purchase_date).to_i }
         total_days / sold_sneakers.count
     end
+
+    def days_to_sell
+        return unless sold_date && purchase_date
+        (sold_date - purchase_date).to_i
+      end
+      
     
     
     def profit
