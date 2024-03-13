@@ -18,3 +18,8 @@ a {
 .no-wrap td {
     white-space: nowrap;
 }
+
+.nowrap {
+    white-space: nowrap;
+  }
+  
