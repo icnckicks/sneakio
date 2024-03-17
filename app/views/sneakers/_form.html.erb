@@ -121,37 +121,49 @@
   
   
   <%= javascript_tag do %>
-  document.addEventListener('turbo:load', function() {
-    // Add Listing functionality
-    var addListingBtn = document.getElementById('add_listing');
-    if (addListingBtn) {
-      addListingBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        var listingsContainer = document.getElementById('listings');
-        if (listingsContainer) {
-          var originalField = listingsContainer.querySelector('.nested-fields:not(.cloned)');
-          if (originalField) {
-            var newField = originalField.cloneNode(true);
-            newField.classList.add('cloned');
-            var newTime = new Date().getTime();
-            
-            newField.querySelectorAll('input, select, textarea').forEach(function(input) {
-              if (input.name) {
-                input.name = input.name.replace(/\[\d+\]/, '[' + newTime + ']');
-              }
-              if (input.type !== 'hidden') {
-                input.value = '';
-              }
-            });
-            
-            listingsContainer.appendChild(newField);
+    document.addEventListener('turbo:load', function() {
+      // Add Listing functionality
+      var addListingBtn = document.getElementById('add_listing');
+      if (addListingBtn) {
+        addListingBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+  
+          var listingsContainer = document.getElementById('listings');
+          if (listingsContainer) {
+            var originalField = listingsContainer.querySelector('.nested-fields:not(.cloned)');
+            if (originalField) {
+              var newField = originalField.cloneNode(true);
+              newField.classList.add('cloned');
+              var newTime = new Date().getTime();
+  
+              newField.querySelectorAll('input, select, textarea').forEach(function(input) {
+                if (input.name) {
+                  input.name = input.name.replace(/\[\d+\]/, '[' + newTime + ']');
+                }
+                if (input.type !== 'hidden') {
+                  input.value = '';
+                }
+              });
+  
+              listingsContainer.appendChild(newField);
+            }
           }
-        }
-      });
-    }
+        });
+      }
     
+      // Remove Listing functionality
+  document.body.addEventListener('click', function(e) {
+    if (e.target.matches('.remove_fields')) {
+      e.preventDefault();
+      var fieldToBeRemoved = e.target.closest('.nested-fields');
+      if (fieldToBeRemoved) {
+        fieldToBeRemoved.querySelector("input[type=hidden][name*='_destroy']").value = '1';
+        fieldToBeRemoved.style.display = 'none';
+      }
+    }
+  });
+
     // Toggle Tracking Number Field functionality
     var carrierCheckboxes = document.querySelectorAll('input[type="checkbox"][data-carrier]');
     if (carrierCheckboxes.length > 0) {
