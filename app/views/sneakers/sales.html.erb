@@ -65,6 +65,7 @@
 <th scope="col">ROI</th>
 <th scope="col">Profit</th>
 <th scope="col">Date Sold</th>
+<th scope="col">Days to Sale</th>
 <th scope="col">Actions</th>
 </tr>
 </thead>
@@ -81,6 +82,7 @@
   <td><%= number_to_percentage(sneaker.roi, precision: 2) %></td>
   <td><%= number_to_currency(sneaker.profit) %></td>
   <td><%= sneaker.sold_date.strftime('%m/%d/%y') %></td>
+  <td><%= sneaker.days_to_sell %></td>
   <td>
   <%= link_to sneaker_path(sneaker), class: 'btn btn-sm btn-info' do %>
     <i class="bi bi-eye"></i>

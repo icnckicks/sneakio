@@ -32,6 +32,13 @@ class Sneaker < ApplicationRecord
         where(sold: true).sum(:sale_price)
     end
     
+    def days_to_sell
+        return unless sold_date && purchase_date
+        (sold_date - purchase_date).to_i
+    end
+    
+    
+    
     def roi
         return 0 unless purchase_price.present? && payout.present? && payout > 0
         ((payout - purchase_price) / purchase_price.to_f) * 100
